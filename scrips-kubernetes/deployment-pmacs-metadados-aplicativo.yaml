@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-metadados-aplicativo-svc
+  labels:
+    run: pmacs-metadados-aplicativo
+spec:
+  ports:
+    - port: 8087
+      protocol: TCP
+      targetPort: 8090
+  selector:
+    run: pmacs-metadados-aplicativo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pmacs-metadados-aplicativo
+spec:
+  selector:
+    matchLabels:
+      run: pmacs-metadados-aplicativo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pmacs-metadados-aplicativo
+    spec:
+      containers:
+        - name: pmacs-metadados-aplicativo
+          image: pmacshub/pmacs-metadados-aplicativo-homo
+          ports:
+            - containerPort: 8090

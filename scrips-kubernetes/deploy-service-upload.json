@@ -1,0 +1,18 @@
+{
+    "apiVersion": "v1",
+    "kind":     "Service",
+    "metadata": {
+         "name": "pod-uploadfile-svc"
+    },
+    "spec":     {
+            "type":     "ClusterIP",
+            "selector": {
+                "app":  "pmacs-api"
+            },
+            "ports":    [{
+                "protocol":     "TCP",
+                "port": 8585,
+                "targetPort": "port-uploadfile"
+            }]
+    }
+}

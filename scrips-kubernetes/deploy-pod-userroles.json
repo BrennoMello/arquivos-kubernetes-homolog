@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-userroles-pod",
+            "labels":{
+                "app":  "pmacs-userroles"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-ms-userroles",
+                "image":  "pmacshub/pmacs-ms-userroles-homo",
+            "ports":[{
+                "containerPort": 8085,
+                "name": "port-userroles"
+            }]
+        }]
+    }
+}

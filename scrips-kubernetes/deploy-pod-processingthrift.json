@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-processingthrift-pod",
+            "labels":{
+                "app":  "pmacs-processingthrift"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-ms-processingthrift",
+                "image":  "pmacshub/pmacs-ms-processingthrift-homo",
+            "ports":[{
+                "containerPort": 8080,
+                "name": "port-pro-thrift"
+            }]
+        }]
+    }
+}

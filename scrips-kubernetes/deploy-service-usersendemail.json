@@ -1,0 +1,18 @@
+{
+    "apiVersion": "v1",
+    "kind":     "Service",
+    "metadata": {
+         "name": "pod-usersendemail-svc"
+    },
+    "spec":     {
+            "type":     "ClusterIP",
+            "selector": {
+                "app":  "pmacs-usersendemail"
+            },
+            "ports":    [{
+                "protocol":     "TCP",
+                "port": 8080,
+                "targetPort": "p-usersendemail"
+            }]
+    }
+}

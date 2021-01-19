@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-frontendv2-pod",
+            "labels":{
+                "app":  "pmacs-frontendv2"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-frontendv2",
+                "image":  "pmacshub/pmacs-front-v2",
+            "ports":[{
+                "containerPort": 3000,
+                "name": "port-frontendv2"
+            }]
+        }]
+    }
+}

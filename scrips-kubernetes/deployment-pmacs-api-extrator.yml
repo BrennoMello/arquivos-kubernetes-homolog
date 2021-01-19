@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-extrator-svc
+  labels:
+    run: pmacs-extrator
+spec:
+  ports:
+    - port: 9098
+      protocol: TCP
+      targetPort: 9095
+  selector:
+    run: pmacs-extrator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-extrator
+spec:
+  selector:
+    matchLabels:
+      run: pmacs-extrator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pmacs-extrator
+    spec:
+      containers:
+        - name: pmacs-extrator
+          image: pmacshub/pmacs-extrator-homo
+          ports:
+            - containerPort: 9095

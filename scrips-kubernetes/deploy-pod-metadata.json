@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pmacs-metadata-pod
+  labels:
+    app: pmacs-metadata
+spec:
+  containers:
+    - name: pmacs-ms-metadata
+      image: pmacshub/pmacs-ms-metadata:dev-1.0.0
+      ports:
+      - containerPort: 9090
+        name: port-metadata
+      volumeMounts:
+      - name: tz-sp
+        mountPath: /etc/localtime
+  volumes:
+    - name: tz-sp
+      hostPath:
+        path: /usr/share/zoneinfo/America/Sao_Paulo

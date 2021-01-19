@@ -1,0 +1,26 @@
+{
+	"apiVersion":   "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata":     {
+                "name": "pmacs-minio"
+                
+     },
+    "spec":     {
+    "backend":  {
+            "serviceName":      "default-http-backend",
+            "servicePort":      80
+    },
+    "rules":    [{
+            
+            "http":     {
+                    "paths":    [{
+                            "path":     "/minio",
+                            "backend":  {
+                                    "serviceName":      "minio-service",
+                                    "servicePort":      9000
+                            }
+                    }]
+            }
+    }]
+  }
+}

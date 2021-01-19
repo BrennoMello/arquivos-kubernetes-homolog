@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-aplicativo-sincronizacao-fichas-svc
+  labels:
+    run: pmacs-aplicativo-sincronizacao-fichas
+spec:
+  ports:
+    - port: 8087
+      protocol: TCP
+      targetPort: 8090
+  selector:
+    run: pmacs-aplicativo-sincronizacao-fichas
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pmacs-aplicativo-sincronizacao-fichas
+spec:
+  selector:
+    matchLabels:
+      run: pmacs-aplicativo-sincronizacao-fichas
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pmacs-aplicativo-sincronizacao-fichas
+    spec:
+      containers:
+        - name: pmacs-aplicativo-sincronizacao-fichas
+          image: pmacshub/pmacs-aplicativo-sincronizacao-fichas-homo
+          ports:
+            - containerPort: 8090

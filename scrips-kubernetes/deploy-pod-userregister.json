@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-userregister-pod",
+            "labels":{
+                "app":  "pmacs-userregister"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-ms-userregister",
+                "image":  "pmacshub/pmacs-ms-userregister-homo",
+            "ports":[{
+                "containerPort": 8083,
+                "name": "p-userregister"
+            }]
+        }]
+    }
+}

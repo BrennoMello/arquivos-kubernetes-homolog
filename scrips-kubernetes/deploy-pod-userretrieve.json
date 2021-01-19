@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-userretrieve-pod",
+            "labels":{
+                "app":  "pmacs-userretrieve"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-ms-userretrieve",
+                "image":  "pmacshub/pmacs-ms-userretrieve-homo",
+            "ports":[{
+                "containerPort": 8081,
+                "name": "p-userretrieve"
+            }]
+        }]
+    }
+}

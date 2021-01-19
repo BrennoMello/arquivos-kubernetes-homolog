@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-individuo-svc
+  labels:
+    run: pmacs-individuo
+spec:
+  ports:
+    - port: 8097
+      protocol: TCP
+      targetPort: 9090
+  selector:
+    run: pmacs-individuo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-individuo
+spec:
+  selector:
+    matchLabels:
+      run: pmacs-individuo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pmacs-individuo
+    spec:
+      containers:
+        - name: pmacs-individuo
+          image: pmacshub/pmacs-individuo-homo
+          ports:
+            - containerPort: 8090

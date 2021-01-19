@@ -1,0 +1,41 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pod-metadata-svc
+spec:
+  selector:
+    app: pmacs-metadata
+  type: ClusterIP
+  ports:
+      - name: http
+        protocol: TCP
+        port: 8080
+        targetPort: port-metadata
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-metadata
+spec:
+  selector:
+    matchLabels:
+      run: pmacs-metadata
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: pmacs-metadata
+    spec:
+      containers:
+        - name: pmacs-ms-metadata
+          image: pmacshub/pmacs-ms-metadata
+          ports:
+            - containerPort: 8090
+              name: port-metadata
+          volumeMounts:
+            - name: tz-sp
+              mountPath: /etc/localtime
+      volumes:
+      - name: tz-sp
+        hostPath:
+          path: /usr/share/zoneinfo/America/Sao_Paulo

@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pmacs-backend-frontend
+  annotations:
+        nginx.ingress.kubernetes.io/use-regex: "true"
+        nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+    - host: 
+      http:
+        paths:
+        - path: /api/(.*)
+          backend:
+            serviceName: pod-apigateway-svc
+            servicePort: 8787

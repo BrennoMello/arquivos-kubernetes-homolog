@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+            "name": "pmacs-usersendemail-pod",
+            "labels":{
+                "app":  "pmacs-usersendemail"
+            }
+    },
+    "spec": {
+            "containers":   [{
+                "name": "pmacs-ms-usersendemail",
+                "image":  "pmacshub/pmacs-ms-usersendemail-homo",
+            "ports":[{
+                "containerPort": 8086,
+                "name": "p-usersendemail"
+            }]
+        }]
+    }
+}
